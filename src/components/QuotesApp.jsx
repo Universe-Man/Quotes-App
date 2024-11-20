@@ -23,7 +23,10 @@ const toggleFavorites = () => {
 };
 
 const addToFavorites = () => {
-  setFavorites([...favorites, quote]);
+  const isAlreadyInFavorites = favorites.some((fav) => fav.text === quote.text && fav.author === quote.author);
+  if (!isAlreadyInFavorites) {
+    setFavorites([...favorites, quote]);
+  };
 };
 
   return (
