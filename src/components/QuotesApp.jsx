@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const QuotesApp = () => {
   const [quote, setQuote] = useState({
-    text: "Ask not what your country can do for you, but what you can do for your country.",
-    author: "John F. Kennedy"
+    text: "Maybe that's enlightenment enough: to know that there is no final resting place of the mind, no moment of smug clarity. Perhaps wisdom... is realizing how small I am, and unwise, and how far I have yet to go.",
+    author: "Anthony Bourdain"
   });
   const [favorites, setFavorites] = useState([]);
   const [showFavorites, setShowFavorites] = useState(false);
@@ -25,9 +25,16 @@ const toggleFavorites = () => {
 const addToFavorites = () => {
   const isAlreadyInFavorites = favorites.some((fav) => fav.text === quote.text && fav.author === quote.author);
   if (!isAlreadyInFavorites) {
-    setFavorites([...favorites, quote]);
+    const updatedFavorites = [...favorites, quote];
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 };
+
+useEffect(() => {
+  const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  setFavorites(storedFavorites);
+}, []);
 
   return (
     <div className="container">
@@ -59,8 +66,9 @@ const addToFavorites = () => {
               <div className="fav-quote" key={index}>
                 <div className="fav-quote-delete">
                   <i className="bx bx-x-circle" onClick={() => {
-                    const updatedFavorties = favorites.filter((item, i) => i !== index);
-                    setFavorites(updatedFavorties);
+                    const updatedFavorites = favorites.filter((item, i) => i !== index);
+                    setFavorites(updatedFavorites);
+                    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
                   }}></i>
                 </div>
                 <div className="fav-quote-content">
