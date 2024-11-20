@@ -4,7 +4,9 @@ const QuotesApp = () => {
   const [quote, setQuote] = useState({
     text: "Ask not what your country can do for you, but what you can do for your country.",
     author: "John F. Kennedy"
-  })
+  });
+  const [favorites, setFavorites] = useState([]);
+  const [showFavorites, setShowFavorites] = useState(false);
 
 const fetchNewQuote = async () => {
   const url = import.meta.env.VITE_QUOTABLE_API_URL;
@@ -16,11 +18,19 @@ const fetchNewQuote = async () => {
   });
 };
 
+const toggleFavorites = () => {
+  setShowFavorites(!showFavorites);
+};
+
+const addToFavorites = () => {
+  setFavorites([...favorites, quote]);
+};
+
   return (
     <div className="container">
       <div className="quotes-app">
         <h1 className="app-heading">Quote</h1>
-        <i className="bx bxs-heart fav-icon" />
+        <i className="bx bxs-heart fav-icon" onClick={toggleFavorites} />
         <div className="quote">
           <i className="bx bxs-quote-alt-left left-quote"></i>
           <p className="quote-text">{quote.text}</p>
@@ -35,26 +45,33 @@ const fetchNewQuote = async () => {
         </div>
         <div className="buttons">
           <button className="btn btn-new" onClick={fetchNewQuote}>New Quote</button>
-          <button className="btn btn-fav">Add to Favorites</button>
+          <button className="btn btn-fav" onClick={addToFavorites}>Add to Favorites</button>
         </div>
-        <div className="favorites">
-          <button className="btn-close">
-            <i className="bx bx-x" />
-          </button>
-          <div className="fav-quote">
-            <div className="fav-quote-delete">
-              <i className="bx bx-x-circle"></i>
-            </div>
-            <div className="fav-quote-content">
-              <div className="fav-quote-text">
-                Ask not what your country can do for you, but what you can do for your country.
+        {showFavorites && (
+          <div className="favorites">
+            <button className="btn-close" onClick={toggleFavorites}>
+              <i className="bx bx-x" />
+            </button>
+            {favorites.map((favQuote, index) => (
+              <div className="fav-quote" key={index}>
+                <div className="fav-quote-delete">
+                  <i className="bx bx-x-circle" onClick={() => {
+                    const updatedFavorties = favorites.filter((item, i) => i !== index);
+                    setFavorites(updatedFavorties);
+                  }}></i>
+                </div>
+                <div className="fav-quote-content">
+                  <div className="fav-quote-text">
+                    {favQuote.text}
+                  </div>
+                  <div className="fav-quote-author">
+                    {favQuote.author}
+                  </div>
+                </div>
               </div>
-              <div className="fav-quote-author">
-                John F. Kennedy
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
