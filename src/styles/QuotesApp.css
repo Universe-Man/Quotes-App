@@ -186,3 +186,27 @@
   text-align: right;
   color: #ddd;
 }
+
+@media(max-width: 850px) {
+  .quotes-app {
+    width: 75vmin;
+    aspect-ratio: 2 / 3;
+  }
+}
+
+@media(max-width: 550px) {
+  .quotes-app {
+    aspect-ratio: 1 / 2;
+  }
+
+  .buttons {
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+}
+
+@media(max-height: 800px) {
+  .buttons {
+    bottom: 3rem;
+  }
+}
