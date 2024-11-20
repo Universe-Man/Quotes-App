@@ -148,6 +148,24 @@
   inset: 0;
   background-image: linear-gradient(to left, #1b9b96, #2e6f79);
   padding: 3rem 7rem 3rem 3rem;
+  overflow-y: auto;
+}
+
+.favorites::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.favorites::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.favorites::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 0.4rem;
+}
+
+.favorites::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .fav-quote {
