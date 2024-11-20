@@ -47,6 +47,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+  z-index: 1;
 }
 
 .quote i {
@@ -225,7 +226,20 @@ footer a {
 @media(max-width: 850px) {
   .quotes-app {
     width: 75vmin;
+    /* aspect-ratio: 2 / 3;
+     */
+    aspect-ratio: 1;
+  }
+}
+
+@media(max-width: 700px) {
+  .quotes-app {
+    width: 75vmin;
     aspect-ratio: 2 / 3;
+  }
+
+  footer {
+    bottom: 2.5rem;
   }
 }
 
@@ -237,6 +251,12 @@ footer a {
   .buttons {
     flex-direction: column;
     row-gap: 2rem;
+  }
+}
+
+@media(max-height: 900px) {
+  .quotes-app {
+    aspect-ratio: 1;
   }
 }
 
