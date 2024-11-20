@@ -205,6 +205,23 @@
   color: #ddd;
 }
 
+footer {
+  position: absolute;
+  bottom: 5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212226;
+  text-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  left: 50%;
+  transform: translate(-50%);
+  white-space: nowrap;
+}
+
+footer a {
+  color: #2e6f79;
+  text-decoration: none;
+}
+
 @media(max-width: 850px) {
   .quotes-app {
     width: 75vmin;
@@ -226,5 +243,21 @@
 @media(max-height: 800px) {
   .buttons {
     bottom: 3rem;
+  }
+
+  footer {
+    bottom: 2.5rem;
+  }
+}
+
+@media(max-height: 650px) {
+  footer {
+    bottom: 0rem;
+  }
+}
+
+@media(max-height: 600px) {
+  footer {
+    display: none;
   }
 }

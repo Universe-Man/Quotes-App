@@ -7,6 +7,7 @@ const QuotesApp = () => {
   });
   const [favorites, setFavorites] = useState([]);
   const [showFavorites, setShowFavorites] = useState(false);
+  const currentYear = new Date().getFullYear();
 
 const fetchNewQuote = async () => {
   const url = import.meta.env.VITE_QUOTABLE_API_URL;
@@ -84,6 +85,7 @@ useEffect(() => {
           </div>
         )}
       </div>
+      <footer>© {currentYear} | Built by <a href={import.meta.env.VITE_IAN_POLLACK_WEBSITE_URL} target="_blank">Ian Pollack</a></footer>
     </div>
   );
 };
