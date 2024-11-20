@@ -150,6 +150,7 @@
   background-image: linear-gradient(to left, #1b9b96, #2e6f79);
   padding: 3rem 7rem 3rem 3rem;
   overflow-y: auto;
+  z-index: 2;
 }
 
 .favorites::-webkit-scrollbar {
@@ -226,8 +227,6 @@ footer a {
 @media(max-width: 850px) {
   .quotes-app {
     width: 75vmin;
-    /* aspect-ratio: 2 / 3;
-     */
     aspect-ratio: 1;
   }
 }

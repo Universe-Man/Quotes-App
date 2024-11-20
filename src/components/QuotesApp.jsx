@@ -11,6 +11,7 @@ const QuotesApp = () => {
 
 const fetchNewQuote = async () => {
   const url = import.meta.env.VITE_QUOTABLE_API_URL;
+  // TODO: add error handling with API SSL cert down / missing
   const response = await fetch(url);
   const data = await response.json();
   setQuote({
